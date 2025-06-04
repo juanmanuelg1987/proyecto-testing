@@ -1,0 +1,8 @@
+## ✅ Casos de Prueba (CP)
+
+| ID   | Caso de Prueba                           | Resultado Esperado                          |
+|------|-------------------------------------------|---------------------------------------------|
+| CP01 | Registro de nuevo usuario                 | Cuenta creada correctamente                 |
+| CP02 | Búsqueda de producto                      | Resultados relevantes mostrados             |
+| CP03 | Agregar producto al carrito               | Producto agregado al carrito correctamente  |
+| CP04 | Finalizar compra                          | Compra realizada exitosamente               |

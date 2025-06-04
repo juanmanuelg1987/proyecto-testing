@@ -1,0 +1,7 @@
+## 🐞 Reporte de Bugs
+
+| ID   | Título                            | Severidad | Descripción                                                               |
+|------|-----------------------------------|-----------|---------------------------------------------------------------------------|
+| BUG1 | Campos obligatorios no marcados  | Media     | En el registro, no se indica qué campos son requeridos.                  |
+| BUG2 | Resultados no relacionados        | Alta      | Al buscar "alimento para perros", aparecen resultados irrelevantes.      |
+| BUG3 | Botón de compra sin acción        | Crítica   | En algunos productos, el botón "Comprar" no responde al clic.            |
