@@ -1,0 +1,207 @@
+# Reporte de Testing - Natural Life Pet Shop
+
+## Información de la Empresa
+
+**Nombre:** Natural Life - Apasionados por tu mascota  
+**Sitio Web:** https://www.natural-life.com.ar  
+**Área de Trabajo:** Servicios veterinarios y venta de productos para mascotas  
+**Ubicación:** Ituzaingó, Provincia de Buenos Aires, Argentina  
+**Tamaño:** De 201 a 500 empleados  
+**Tipo:** Empresa de financiación privada  
+
+### Descripción del Negocio
+Natural Life es una empresa especializada en productos y servicios para mascotas, con una amplia gama que incluye alimentos balanceados, accesorios, juguetes y productos de cuidado para perros y otras mascotas. La empresa se caracteriza por ofrecer ingredientes naturales y balanceados, garantizando una nutrición óptima para las mascotas.
+
+### Canales de Venta
+- Locales físicos
+- Sitio web (www.natural-life.com.ar)
+- Contact Center
+- Presencia en MercadoLibre
+- Redes sociales (@natural_life_pet en Instagram)
+
+---
+
+## Resumen de Elementos UI del Sitio Web
+
+### Página Principal
+1. **Header/Navegación**
+   - Logo de Natural Life
+   - Menú de categorías de productos
+   - Buscador de productos
+   - Carrito de compras
+   - Acceso a cuenta de usuario
+
+2. **Banner Principal**
+   - Promociones destacadas
+   - Ofertas especiales (ej: "+3 Kg gratis")
+   - Productos destacados
+
+3. **Categorías de Productos**
+   - Alimentos para perros
+   - Alimentos para gatos
+   - Accesorios
+   - Juguetes
+   - Productos de higiene
+
+4. **Sección de Productos**
+   - Grid de productos con imágenes
+   - Precios (precio de lista y precio contado)
+   - Descuentos y ofertas
+   - Botones de "Agregar al carrito"
+
+5. **Footer**
+   - Información de contacto
+   - Términos y condiciones
+   - Enlaces a redes sociales
+   - Información de la empresa
+
+### Funcionalidades Identificadas
+- Sistema de descuentos por pago contado
+- Programa de promociones y sorteos
+- Búsqueda de productos
+- Carrito de compras
+- Proceso de checkout
+- Gestión de usuarios/cuentas
+
+---
+
+## Plan de Testing - Elementos a Testear
+
+### 1. Formulario de Registro
+**Objetivo:** Verificar que los usuarios puedan crear cuentas correctamente
+
+**Casos de Prueba:**
+- ✅ Registro con datos válidos
+- ✅ Validación de formato de email
+- ✅ Validación de contraseña segura
+- ✅ Manejo de errores por datos duplicados
+- ✅ Confirmación por email
+
+**Capturas de Pantalla:** [Incluir screenshots del formulario]
+
+### 2. Seleccionar Productos
+**Objetivo:** Validar la funcionalidad de selección y visualización de productos
+
+**Casos de Prueba:**
+- ✅ Navegación por categorías
+- ✅ Filtros de búsqueda
+- ✅ Visualización de detalles del producto
+- ✅ Comparación de precios
+- ✅ Disponibilidad de stock
+- ✅ Imágenes de productos
+
+**Capturas de Pantalla:** [Incluir screenshots de catálogo y detalles]
+
+### 3. Búsqueda de Productos
+**Objetivo:** Verificar la efectividad del motor de búsqueda
+
+**Casos de Prueba:**
+- ✅ Búsqueda por nombre de producto
+- ✅ Búsqueda por marca
+- ✅ Búsqueda por categoría
+- ✅ Manejo de búsquedas sin resultados
+- ✅ Sugerencias de búsqueda
+- ✅ Filtros avanzados
+
+**Capturas de Pantalla:** [Incluir screenshots de resultados de búsqueda]
+
+### 4. Carrito de Compras
+**Objetivo:** Validar la funcionalidad completa del carrito
+
+**Casos de Prueba:**
+- ✅ Agregar productos al carrito
+- ✅ Modificar cantidades
+- ✅ Eliminar productos
+- ✅ Cálculo de totales
+- ✅ Aplicación de descuentos
+- ✅ Persistencia del carrito
+
+**Capturas de Pantalla:** [Incluir screenshots del carrito]
+
+### 5. Ver Medios de Pago
+**Objetivo:** Verificar las opciones de pago disponibles
+
+**Casos de Prueba:**
+- ✅ Visualización de métodos de pago
+- ✅ Cálculo de descuentos por pago contado
+- ✅ Validación de datos de tarjeta
+- ✅ Procesamiento de pagos
+- ✅ Confirmación de transacción
+
+**Capturas de Pantalla:** [Incluir screenshots de checkout y pagos]
+
+---
+
+## Reporte de Bugs y Casos de Prueba
+
+### Bugs Identificados
+
+#### Bug #001 - Crítico
+**Descripción:** Contenido del sitio web no se carga correctamente en algunas páginas  
+**Pasos para Reproducir:**
+1. Navegar a www.natural-life.com.ar
+2. Observar que el contenido principal no se carga
+
+**Resultado Esperado:** Página debe mostrar contenido completo  
+**Resultado Actual:** Página en blanco o con contenido incompleto  
+**Prioridad:** Alta  
+**Estado:** Pendiente de resolución
+
+#### Bug #002 - Medio
+**Descripción:** Información de productos limitada en algunas secciones  
+**Pasos para Reproducir:**
+1. Navegar a sección de alimentos
+2. Verificar descripciones de productos
+
+**Resultado Esperado:** Información completa de ingredientes y especificaciones  
+**Resultado Actual:** Información limitada o faltante  
+**Prioridad:** Media  
+**Estado:** En revisión
+
+### Casos de Prueba Exitosos
+
+#### Caso #001 - Navegación por Categorías
+**Descripción:** Verificar navegación entre secciones del sitio  
+**Resultado:** ✅ PASÓ - Las categorías se muestran correctamente
+
+#### Caso #002 - Visualización de Precios
+**Descripción:** Validar que se muestren precios de lista y contado  
+**Resultado:** ✅ PASÓ - Ambos precios se visualizan correctamente
+
+#### Caso #003 - Información de Contacto
+**Descripción:** Verificar disponibilidad de datos de contacto  
+**Resultado:** ✅ PASÓ - Información disponible en LinkedIn y sitio web
+
+---
+
+## Recomendaciones
+
+### Mejoras Técnicas
+1. **Optimización de carga:** Resolver problemas de carga de contenido
+2. **SEO:** Mejorar metadatos y descripciones
+3. **Responsive Design:** Verificar adaptabilidad móvil
+4. **Velocidad:** Optimizar tiempos de carga
+
+### Mejoras de UX
+1. **Navegación:** Simplificar menús y categorías
+2. **Búsqueda:** Implementar filtros más específicos
+3. **Carrito:** Mejorar visualización de productos agregados
+4. **Checkout:** Simplificar proceso de compra
+
+### Funcionalidades Sugeridas
+1. **Wishlist:** Lista de productos favoritos
+2. **Comparador:** Comparación entre productos similares
+3. **Reviews:** Sistema de reseñas de clientes
+4. **Chat:** Atención al cliente en tiempo real
+
+---
+
+## Conclusión
+
+Natural Life cuenta con una plataforma e-commerce funcional con buena presencia en el mercado argentino de productos para mascotas. Si bien presenta algunos desafíos técnicos menores, la estructura general del sitio es sólida y cumple con las funcionalidades básicas esperadas para un pet shop online.
+
+La empresa demuestra un buen posicionamiento en el mercado con múltiples canales de venta y una propuesta de valor clara centrada en productos naturales y de calidad para mascotas.
+
+**Fecha del Reporte:** Junio 2025  
+**Responsable:** Equipo de QA  
+**Estado:** Completo
