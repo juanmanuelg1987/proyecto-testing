@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reporte de Testing - Natural Life</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        .presentation-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .slide {
+            background: white;
+            margin: 20px 0;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            min-height: 80vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .slide::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, #4CAF50, #2196F3, #FF9800);
+        }
+
+        .slide-number {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            background: #667eea;
+            color: white;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            color: #2c3e50;
+            text-align: center;
+            margin-bottom: 30px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+
+        h2 {
+            font-size: 2em;
+            color: #34495e;
+            margin-bottom: 25px;
+            border-bottom: 3px solid #3498db;
+            padding-bottom: 10px;
+        }
+
+        h3 {
+            font-size: 1.4em;
+            color: #2980b9;
+            margin: 20px 0 15px 0;
+        }
+
+        .company-info {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin: 20px 0;
+        }
+
+        .info-card {
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 5px solid #3498db;
+        }
+
+        .info-card h4 {
+            color: #2c3e50;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+
+        .info-card p {
+            color: #5a6c7d;
+            line-height: 1.5;
+        }
+
+        .ui-elements {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .ui-element {
+            background: linear-gradient(135deg, #fff, #f8f9fa);
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid #dee2e6;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .ui-element:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+
+        .ui-element h4 {
+            color: #2980b9;
+            margin-bottom: 8px;
+        }
+
+        .test-element {
+            background: linear-gradient(135deg, #e8f5e8, #f0f8f0);
+            margin: 15px 0;
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 5px solid #27ae60;
+        }
+
+        .test-element h4 {
+            color: #27ae60;
+            margin-bottom: 10px;
+        }
+
+        .test-cases {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin: 15px 0;
+        }
+
+        .test-case {
+            background: white;
+            padding: 10px;
+            border-radius: 5px;
+            font-size: 0.9em;
+            border-left: 3px solid #3498db;
+        }
+
+        .bug-report {
+            background: linear-gradient(135deg, #ffe6e6, #fff0f0);
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 5px solid #e74c3c;
+            margin: 15px 0;
+        }
+
+        .bug-critical {
+            border-left-color: #e74c3c;
+        }
+
+        .bug-medium {
+            border-left-color: #f39c12;
+        }
+
+        .success-case {
+            background: linear-gradient(135deg, #e8f5e8, #f0f8f0);
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid #27ae60;
+            margin: 10px 0;
+        }
+
+        .recommendations {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .recommendation-card {
+            background: linear-gradient(135deg, #fff7e6, #fff9ec);
+            padding: 20px;
+            border-radius: 10px;
+            border-top: 4px solid #f39c12;
+        }
+
+        .status-badge {
+            display: inline-block;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.8em;
+            font-weight: bold;
+            margin: 5px;
+        }
+
+        .status-critical { background: #e74c3c; color: white; }
+        .status-medium { background: #f39c12; color: white; }
+        .status-success { background: #27ae60; color: white; }
+
+        .footer-slide {
+            background: linear-gradient(135deg, #2c3e50, #3498db);
+            color: white;
+            text-align: center;
+        }
+
+        .footer-slide h1, .footer-slide h2 {
+            color: white;
+        }
+
+        .logo-placeholder {
+            width: 150px;
+            height: 80px;
+            background: linear-gradient(135deg, #27ae60, #2ecc71);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            margin: 0 auto 20px auto;
+        }
+
+        .screenshot-placeholder {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, #ecf0f1, #bdc3c7);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #7f8c8d;
+            font-style: italic;
+            margin: 15px 0;
+            border: 2px dashed #95a5a6;
+        }
+
+        ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+
+        li {
+            margin: 8px 0;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        li::before {
+            content: '▶';
+            position: absolute;
+            left: 0;
+            color: #3498db;
+            font-weight: bold;
+        }
+
+        .check-item::before {
+            content: '✅';
+        }
+
+        @media (max-width: 768px) {
+            .slide {
+                padding: 20px;
+                margin: 10px 0;
+            }
+            
+            .company-info,
+            .test-cases,
+            .recommendations {
+                grid-template-columns: 1fr;
+            }
+            
+            h1 { font-size: 2em; }
+            h2 { font-size: 1.5em; }
+        }
+    </style>
+</head>
+<body>
+    <div class="presentation-container">
+        
+        <!-- Slide 1: Portada -->
+        <div class="slide">
+            <div class="slide-number">1/12</div>
+            <div class="logo-placeholder">NATURAL LIFE</div>
+            <h1>Reporte de Testing</h1>
+            <h2 style="text-align: center; border: none; margin-top: 30px;">Natural Life Pet Shop</h2>
+            <div style="text-align: center; margin-top: 40px;">
+                <p style="font-size: 1.2em; color: #7f8c8d;">Análisis Completo de Funcionalidades</p>
+                <p style="font-size: 1em; color: #95a5a6; margin-top: 20px;">Junio 2025</p>
+            </div>
+        </div>
+
+        <!-- Slide 2: Información de la Empresa -->
+        <div class="slide">
+            <div class="slide-number">2/12</div>
+            <h2>Información de la Empresa</h2>
+            <div class="company-info">
+                <div class="info-card">
+                    <h4>🏢 Datos Generales</h4>
+                    <p><strong>Nombre:</strong> Natural Life</p>
+                    <p><strong>Slogan:</strong> Apasionados por tu mascota</p>
+                    <p><strong>Tamaño:</strong> 201-500 empleados</p>
+                    <p><strong>Tipo:</strong> Empresa privada</p>
+                </div>
+                <div class="info-card">
+                    <h4>🌐 Presencia Digital</h4>
+                    <p><strong>Web:</strong> www.natural-life.com.ar</p>
+                    <p><strong>Instagram:</strong> @natural_life_pet</p>
+                    <p><strong>MercadoLibre:</strong> Tienda oficial</p>
+                    <p><strong>Contact Center:</strong> Activo</p>
+                </div>
+                <div class="info-card">
+                    <h4>📍 Ubicación</h4>
+                    <p><strong>Base:</strong> Ituzaingó, Buenos Aires</p>
+                    <p><strong>Cobertura:</strong> Argentina</p>
+                    <p><strong>Canales:</strong> Online y físicos</p>
+                </div>
+                <div class="info-card">
+                    <h4>🎯 Área de Trabajo</h4>
+                    <p><strong>Sector:</strong> Pet Shop</p>
+                    <p><strong>Productos:</strong> Alimentos balanceados</p>
+                    <p><strong>Servicios:</strong> Veterinarios</p>
+                    <p><strong>Especialidad:</strong> Ingredientes naturales</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 3: Elementos UI del Sitio -->
+        <div class="slide">
+            <div class="slide-number">3/12</div>
+            <h2>Elementos UI Identificados</h2>
+            <div class="ui-elements">
+                <div class="ui-element">
+                    <h4>🏠 Header/Navegación</h4>
+                    <p>Logo, menú principal, búsqueda</p>
+                </div>
+                <div class="ui-element">
+                    <h4>🎯 Banner Principal</h4>
+                    <p>Promociones y ofertas destacadas</p>
+                </div>
+                <div class="ui-element">
+                    <h4>📱 Menú Categorías</h4>
+                    <p>Perros, gatos, accesorios</p>
+                </div>
+                <div class="ui-element">
+                    <h4>🔍 Buscador</h4>
+                    <p>Motor de búsqueda de productos</p>
+                </div>
+                <div class="ui-element">
+                    <h4>🛒 Carrito Compras</h4>
+                    <p>Gestión de productos seleccionados</p>
+                </div>
+                <div class="ui-element">
+                    <h4>👤 Cuenta Usuario</h4>
+                    <p>Login y registro de usuarios</p>
+                </div>
+                <div class="ui-element">
+                    <h4>💳 Checkout</h4>
+                    <p>Proceso de pago y finalización</p>
+                </div>
+                <div class="ui-element">
+                    <h4>📊 Grid Productos</h4>
+                    <p>Catálogo con precios y ofertas</p>
+                </div>
+                <div class="ui-element">
+                    <h4>💰 Precios</h4>
+                    <p>Lista y contado con descuentos</p>
+                </div>
+                <div class="ui-element">
+                    <h4>📱 Footer</h4>
+                    <p>Contacto y redes sociales</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 4: Formulario de Registro -->
+        <div class="slide">
+            <div class="slide-number">4/12</div>
+            <h2>Testing: Formulario de Registro</h2>
+            <div class="test-element">
+                <h4>🎯 Objetivo: Verificar creación de cuentas de usuario</h4>
+                <div class="test-cases">
+                    <div class="test-case check-item">Registro con datos válidos</div>
+                    <div class="test-case check-item">Validación formato email</div>
+                    <div class="test-case check-item">Validación contraseña segura</div>
+                    <div class="test-case check-item">Manejo datos duplicados</div>
+                    <div class="test-case check-item">Confirmación por email</div>
+                    <div class="test-case check-item">Campos obligatorios</div>
+                </div>
+            </div>
+            <div class="screenshot-placeholder">
+                [Insertar captura de pantalla del formulario de registro]
+            </div>
+        </div>
+
+        <!-- Slide 5: Seleccionar Productos -->
+        <div class="slide">
+            <div class="slide-number">5/12</div>
+            <h2>Testing: Seleccionar Productos</h2>
+            <div class="test-element">
+                <h4>🎯 Objetivo: Validar selección y visualización de productos</h4>
+                <div class="test-cases">
+                    <div class="test-case check-item">Navegación por categorías</div>
+                    <div class="test-case check-item">Filtros de búsqueda</div>
+                    <div class="test-case check-item">Detalles del producto</div>
+                    <div class="test-case check-item">Comparación de precios</div>
+                    <div class="test-case check-item">Disponibilidad stock</div>
+                    <div class="test-case check-item">Calidad de imágenes</div>
+                </div>
+            </div>
+            <div class="screenshot-placeholder">
+                [Insertar captura de pantalla del catálogo de productos]
+            </div>
+        </div>
+
+        <!-- Slide 6: Búsqueda de Productos -->
+        <div class="slide">
+            <div class="slide-number">6/12</div>
+            <h2>Testing: Búsqueda de Productos</h2>
+            <div class="test-element">
+                <h4>🎯 Objetivo: Verificar efectividad del motor de búsqueda</h4>
+                <div class="test-cases">
+                    <div class="test-case check-item">Búsqueda por nombre</div>
+                    <div class="test-case check-item">Búsqueda por marca</div>
+                    <div class="test-case check-item">Búsqueda por categoría</div>
+                    <div class="test-case check-item">Sin resultados</div>
+                    <div class="test-case check-item">Sugerencias automáticas</div>
+                    <div class="test-case check-item">Filtros avanzados</div>
+                </div>
+            </div>
+            <div class="screenshot-placeholder">
+                [Insertar captura de pantalla de resultados de búsqueda]
+            </div>
+        </div>
+
+        <!-- Slide 7: Carrito de Compras -->
+        <div class="slide">
+            <div class="slide-number">7/12</div>
+            <h2>Testing: Carrito de Compras</h2>
+            <div class="test-element">
+                <h4>🎯 Objetivo: Validar funcionalidad completa del carrito</h4>
+                <div class="test-cases">
+                    <div class="test-case check-item">Agregar productos</div>
+                    <div class="test-case check-item">Modificar cantidades</div>
+                    <div class="test-case check-item">Eliminar productos</div>
+                    <div class="test-case check-item">Cálculo de totales</div>
+                    <div class="test-case check-item">Aplicar descuentos</div>
+                    <div class="test-case check-item">Persistencia datos</div>
+                </div>
+            </div>
+            <div class="screenshot-placeholder">
+                [Insertar captura de pantalla del carrito de compras]
+            </div>
+        </div>
+
+        <!-- Slide 8: Medios de Pago -->
+        <div class="slide">
+            <div class="slide-number">8/12</div>
+            <h2>Testing: Ver Medios de Pago</h2>
+            <div class="test-element">
+                <h4>🎯 Objetivo: Verificar opciones de pago disponibles</h4>
+                <div class="test-cases">
+                    <div class="test-case check-item">Métodos de pago</div>
+                    <div class="test-case check-item">Descuento pago contado</div>
+                    <div class="test-case check-item">Validación tarjeta</div>
+                    <div class="test-case check-item">Procesamiento pagos</div>
+                    <div class="test-case check-item">Confirmación transacción</div>
+                    <div class="test-case check-item">Seguridad SSL</div>
+                </div>
+            </div>
+            <div class="screenshot-placeholder">
+                [Insertar captura de pantalla del checkout y medios de pago]
+            </div>
+        </div>
+
+        <!-- Slide 9: Bugs Identificados -->
+        <div class="slide">
+            <div class="slide-number">9/12</div>
+            <h2>Reporte de Bugs</h2>
+            
+            <div class="bug-report bug-critical">
+                <h3>🔴 Bug #001 - CRÍTICO</h3>
+                <p><strong>Descripción:</strong> Contenido del sitio no se carga correctamente</p>
+                <p><strong>Impacto:</strong> Páginas en blanco, experiencia de usuario afectada</p>
+                <span class="status-badge status-critical">CRÍTICO</span>
+                <span class="status-badge" style="background: #95a5a6; color: white;">PENDIENTE</span>
+            </div>
+
+            <div class="bug-report bug-medium">
+                <h3>🟡 Bug #002 - MEDIO</h3>
+                <p><strong>Descripción:</strong> Información limitada en descripciones de productos</p>
+                <p><strong>Impacto:</strong> Usuarios no tienen información completa para decidir</p>
+                <span class="status-badge status-medium">MEDIO</span>
+                <span class="status-badge" style="background: #3498db; color: white;">EN REVISIÓN</span>
+            </div>
+        </div>
+
+        <!-- Slide 10: Casos Exitosos -->
+        <div class="slide">
+            <div class="slide-number">10/12</div>
+            <h2>Casos de Prueba Exitosos</h2>
+            
+            <div class="success-case">
+                <h4>✅ Navegación por Categorías</h4>
+                <p><strong>Resultado:</strong> Las categorías se muestran y funcionan correctamente</p>
+                <span class="status-badge status-success">PASÓ</span>
+            </div>
+
+            <div class="success-case">
+                <h4>✅ Visualización de Precios</h4>
+                <p><strong>Resultado:</strong> Precios de lista y contado se muestran claramente</p>
+                <span class="status-badge status-success">PASÓ</span>
+            </div>
+
+            <div class="success-case">
+                <h4>✅ Información de Contacto</h4>
+                <p><strong>Resultado:</strong> Datos de contacto disponibles y actualizados</p>
+                <span class="status-badge status-success">PASÓ</span>
+            </div>
+
+            <div class="success-case">
+                <h4>✅ Sistema de Promociones</h4>
+                <p><strong>Resultado:</strong> Ofertas y descuentos se visualizan correctamente</p>
+                <span class="status-badge status-success">PASÓ</span>
+            </div>
+        </div>
+
+        <!-- Slide 11: Recomendaciones -->
+        <div class="slide">
+            <div class="slide-number">11/12</div>
+            <h2>Recomendaciones</h2>
+            
+            <div class="recommendations">
+                <div class="recommendation-card">
+                    <h3>🔧 Mejoras Técnicas</h3>
+                    <ul>
+                        <li>Optimizar carga de contenido</li>
+                        <li>Mejorar SEO y metadatos</li>
+                        <li>Verificar diseño responsive</li>
+                        <li>Optimizar velocidad de carga</li>
+                    </ul>
+                </div>
+                
+                <div class="recommendation-card">
+                    <h3>👥 Mejoras de UX</h3>
+                    <ul>
+                        <li>Simplificar navegación</li>
+                        <li>Mejorar filtros de búsqueda</li>
+                        <li>Optimizar proceso de checkout</li>
+                        <li>Mejorar visualización del carrito</li>
+                    </ul>
+                </div>
+                
+                <div class="recommendation-card">
+                    <h3>⭐ Nuevas Funcionalidades</h3>
+                    <ul>
+                        <li>Sistema de wishlist</li>
+                        <li>Comparador de productos</li>
+                        <li>Reviews de clientes</li>
+                        <li>Chat de atención al cliente</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 12: Conclusión -->
+        <div class="slide footer-slide">
+            <div class="slide-number" style="background: rgba(255,255,255,0.2);">12/12</div>
+            <h1>Conclusión</h1>
+            <div style="text-align: left; max-width: 800px; margin: 0 auto;">
+                <h3 style="color: #ecf0f1; margin: 30px 0;">✅ Fortalezas Identificadas</h3>
+                <ul style="color: #bdc3c7; font-size: 1.1em;">
+                    <li>Plataforma e-commerce funcional</li>
+                    <li>Buena presencia en múltiples canales</li>
+                    <li>Sistema de precios y descuentos claro</li>
+                    <li>Propuesta de valor diferenciada</li>
+                </ul>
+                
+                <h3 style="color: #ecf0f1; margin: 30px 0 20px 0;">🔧 Áreas de Mejora</h3>
+                <ul style="color: #bdc3c7; font-size: 1.1em;">
+                    <li>Resolver problemas de carga de contenido</li>
+                    <li>Mejorar información de productos</li>
+                    <li>Optimizar experiencia móvil</li>
+                </ul>
+            </div>
+            
+            <p style="margin-top: 40px; font-size: 1.2em; color: #ecf0f1;">
+                <strong>Estado del Proyecto:</strong> Completo | <strong>Fecha:</strong> Junio 2025
+            </p>
+        </div>
+
+    </div>
+</body>
+</html>
