@@ -1,0 +1,10 @@
+## 👤 Historias de Usuario (HU)
+
+| ID  | Como...            | Quiero...                                | Para...                                   |
+|-----|--------------------|------------------------------------------|-------------------------------------------|
+| HU1 | Visitante          | Registrarme en el sitio                  | Acceder a beneficios y realizar compras   |
+| HU2 | Usuario registrado | Buscar productos para mi mascota         | Encontrar rápidamente lo que necesito     |
+| HU3 | Usuario registrado | Agregar productos al carrito             | Comprar múltiples ítems en una sola orden |
+| HU4 | Usuario registrado | Finalizar la compra                      | Recibir los productos en mi domicilio     |
+
+---
