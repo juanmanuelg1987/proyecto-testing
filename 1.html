@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Testing - Proyecto Final - Natural Life</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: #f0f0f0;
+            color: #333;
+            line-height: 1.4;
+        }
+
+        .slide {
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 40px;
+            page-break-after: always;
+            position: relative;
+        }
+
+        .slide:nth-child(1) { background: linear-gradient(135deg, #2c5530, #4a7c59); color: white; }
+        .slide:nth-child(2) { background: #fff; }
+        .slide:nth-child(3) { background: #f8f9fa; }
+        .slide:nth-child(4) { background: #fff; }
+        .slide:nth-child(5) { background: #f8f9fa; }
+        .slide:nth-child(6) { background: #fff; }
+        .slide:nth-child(7) { background: #f8f9fa; }
+        .slide:nth-child(8) { background: #fff; }
+        .slide:nth-child(9) { background: #f8f9fa; }
+        .slide:nth-child(10) { background: #fff; }
+        .slide:nth-child(11) { background: #f8f9fa; }
+        .slide:nth-child(12) { background: #fff; }
+        .slide:nth-child(13) { background: #2c5530; color: white; }
+
+        h1 {
+            font-size: 3.5em;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+        }
+
+        h2 {
+            font-size: 2.5em;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            color: #2c5530;
+        }
+
+        h3 {
+            font-size: 1.8em;
+            font-weight: bold;
+            margin-bottom: 20px;
+            color: #2c5530;
+        }
+
+        .subtitle {
+            font-size: 1.5em;
+            text-align: center;
+            margin-bottom: 40px;
+            font-weight: normal;
+        }
+
+        .company-info {
+            max-width: 800px;
+            text-align: justify;
+            font-size: 1.2em;
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+
+        .company-info strong {
+            color: #2c5530;
+            font-weight: bold;
+        }
+
+        .website-info {
+            text-align: center;
+            font-size: 1.4em;
+            margin: 30px 0;
+            padding: 20px;
+            background: rgba(44, 85, 48, 0.1);
+            border-radius: 10px;
+            border: 2px solid #2c5530;
+        }
+
+        .redes-section {
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        .redes-title {
+            font-size: 2em;
+            font-weight: bold;
+            color: #2c5530;
+            margin-bottom: 20px;
+        }
+
+        .redes-list {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            font-size: 1.3em;
+            font-weight: bold;
+        }
+
+        .redes-item {
+            background: #2c5530;
+            color: white;
+            padding: 15px 30px;
+            border-radius: 5px;
+            text-transform: uppercase;
+        }
+
+        .elementos-ui {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+            width: 100%;
+            max-width: 1000px;
+        }
+
+        .elemento-ui {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            border: 2px solid #2c5530;
+        }
+
+        .elemento-ui h4 {
+            font-size: 1.3em;
+            color: #2c5530;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        .elementos-testear {
+            display: grid;
+            grid-template-columns: repeat(1, 1fr);
+            gap: 20px;
+            width: 100%;
+            max-width: 600px;
+        }
+
+        .elemento-testear {
+            background: #2c5530;
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            font-size: 1.2em;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .numero {
+            background: white;
+            color: #2c5530;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.1em;
+        }
+
+        .testing-section {
+            width: 100%;
+            max-width: 1000px;
+        }
+
+        .testing-title {
+            font-size: 2.5em;
+            text-align: center;
+            color: #2c5530;
+            margin-bottom: 40px;
+            text-transform: uppercase;
+            font-weight: bold;
+        }
+
+        .steps-container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 40px;
+            margin-top: 40px;
+        }
+
+        .step-box {
+            background: #2c5530;
+            color: white;
+            padding: 40px;
+            border-radius: 15px;
+            text-align: center;
+            min-height: 200px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .step-title {
+            font-size: 1.5em;
+            font-weight: bold;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+        }
+
+        .step-content {
+            font-size: 1.1em;
+            line-height: 1.5;
+        }
+
+        .screenshot-placeholder {
+            width: 100%;
+            height: 300px;
+            background: #e9ecef;
+            border: 2px dashed #6c757d;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #6c757d;
+            font-style: italic;
+            margin: 20px 0;
+        }
+
+        .enlaces-section {
+            width: 100%;
+            max-width: 600px;
+        }
+
+        .enlace-item {
+            background: white;
+            padding: 30px;
+            margin: 20px 0;
+            border-radius: 10px;
+            border-left: 5px solid #2c5530;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .enlace-numero {
+            background: #2c5530;
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.3em;
+        }
+
+        .enlace-text {
+            font-size: 1.4em;
+            font-weight: bold;
+            color: #2c5530;
+            text-transform: uppercase;
+        }
+
+        .logo-placeholder {
+            width: 200px;
+            height: 100px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5em;
+            font-weight: bold;
+            margin-bottom: 30px;
+            border: 2px solid rgba(255,255,255,0.3);
+        }
+
+        @media print {
+            .slide {
+                page-break-after: always;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .elementos-ui,
+            .steps-container {
+                grid-template-columns: 1fr;
+            }
+            
+            h1 { font-size: 2.5em; }
+            h2 { font-size: 2em; }
+            
+            .slide {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Slide 1: Portada -->
+    <div class="slide">
+        <h1>TESTING</h1>
+        <p class="subtitle">PROYECTO FINAL</p>
+        <div class="logo-placeholder">NATURAL LIFE</div>
+        <p style="font-size: 1.2em; margin-top: 30px;">TU NOMBRE AQUÍ</p>
+    </div>
+
+    <!-- Slide 2: Información de la Empresa -->
+    <div class="slide">
+        <h2>Natural Life</h2>
+        <div class="company-info">
+            <p><strong>Natural Life</strong> es una empresa argentina especializada en productos y servicios para mascotas, con sede en Ituzaingó, Buenos Aires. Fundada como una empresa de financiación privada, cuenta con un equipo de 201 a 500 empleados dedicados al cuidado y bienestar de las mascotas.</p>
+            
+            <p>La empresa se destaca por ofrecer <strong>alimentos balanceados con ingredientes naturales</strong>, garantizando una nutrición óptima para perros, gatos y otras mascotas. Su propuesta de valor se centra en productos de alta calidad que promueven la salud y vitalidad de los animales de compañía.</p>
+            
+            <p><strong>Natural Life</strong> opera a través de múltiples canales: locales físicos, plataforma e-commerce, contact center y presencia en marketplaces como MercadoLibre, posicionándose como una referencia en el sector pet shop argentino.</p>
+        </div>
+        
+        <div class="website-info">
+            <strong>www.natural-life.com.ar</strong>
+        </div>
+
+        <div class="redes-section">
+            <div class="redes-title">REDES</div>
+            <div class="redes-list">
+                <div class="redes-item">INSTAGRAM</div>
+                <div class="redes-item">FACEBOOK</div>
+                <div class="redes-item">MERCADOLIBRE</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 3: Elementos UI Parte 1 -->
+    <div class="slide">
+        <h2>ELEMENTOS UI</h2>
+        <div class="elementos-ui">
+            <div class="elemento-ui">
+                <h4>BARRA DE NAVEGACIÓN</h4>
+            </div>
+            <div class="elemento-ui">
+                <h4>BOTÓN ENLACES</h4>
+            </div>
+            <div class="elemento-ui">
+                <h4>CARD PRODUCTOS</h4>
+            </div>
+            <div class="elemento-ui">
+                <h4>MENÚ DESPLEGABLE</h4>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 4: Elementos UI Parte 2 -->
+    <div class="slide">
+        <h2>ELEMENTOS UI</h2>
+        <div class="elementos-ui">
+            <div class="elemento-ui">
+                <h4>FORMULARIO</h4>
+            </div>
+            <div class="elemento-ui">
+                <h4>CARRUSEL</h4>
+            </div>
+            <div class="elemento-ui">
+                <h4>BUSCADOR</h4>
+            </div>
+            <div class="elemento-ui">
+                <h4>CARRITO COMPRAS</h4>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 5: Elementos a Testear -->
+    <div class="slide">
+        <h2>ELEMENTOS A TESTEAR</h2>
+        <div class="elementos-testear">
+            <div class="elemento-testear">
+                <div class="numero">01</div>
+                <div>FORMULARIO DE REGISTRO</div>
+            </div>
+            <div class="elemento-testear">
+                <div class="numero">02</div>
+                <div>BÚSQUEDA DE PRODUCTOS</div>
+            </div>
+            <div class="elemento-testear">
+                <div class="numero">03</div>
+                <div>SELECCIÓN DE PRODUCTOS</div>
+            </div>
+            <div class="elemento-testear">
+                <div class="numero">04</div>
+                <div>CARRITO DE COMPRAS</div>
+            </div>
+            <div class="elemento-testear">
+                <div class="numero">05</div>
+                <div>MÉTODOS DE PAGO</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 6: Formulario de Registro -->
+    <div class="slide">
+        <div class="testing-section">
+            <div class="testing-title">FORMULARIO DE REGISTRO</div>
+            <div class="screenshot-placeholder">
+                [CAPTURA DE PANTALLA DEL FORMULARIO DE REGISTRO]
+            </div>
+            <div class="steps-container">
+                <div class="step-box">
+                    <div class="step-title">PASO 1</div>
+                    <div class="step-content">
+                        Acceder a la sección de registro desde el menú principal. Verificar que todos los campos obligatorios estén marcados correctamente.
+                    </div>
+                </div>
+                <div class="step-box">
+                    <div class="step-title">PASO 2</div>
+                    <div class="step-content">
+                        Completar formulario con datos válidos y verificar validaciones de email, contraseña y confirmación de registro.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 7: Búsqueda de Productos -->
+    <div class="slide">
+        <div class="testing-section">
+            <div class="testing-title">BÚSQUEDA DE PRODUCTO</div>
+            <div class="screenshot-placeholder">
+                [CAPTURA DE PANTALLA DE LA BÚSQUEDA DE PRODUCTOS]
+            </div>
+            <div class="steps-container">
+                <div class="step-box">
+                    <div class="step-title">PASO 1</div>
+                    <div class="step-content">
+                        Utilizar el buscador principal ingresando términos como "alimento perro", "Royal Canin" o categorías específicas.
+                    </div>
+                </div>
+                <div class="step-box">
+                    <div class="step-title">PASO 2</div>
+                    <div class="step-content">
+                        Verificar resultados de búsqueda, filtros disponibles, y que se muestren productos relevantes con precios y disponibilidad.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 8: Selección de Productos -->
+    <div class="slide">
+        <div class="testing-section">
+            <div class="testing-title">SELECCIÓN DE PRODUCTO</div>
+            <div class="screenshot-placeholder">
+                [CAPTURA DE PANTALLA DE LA SELECCIÓN DE PRODUCTOS]
+            </div>
+            <div class="steps-container">
+                <div class="step-box">
+                    <div class="step-title">PASO 1</div>
+                    <div class="step-content">
+                        Navegar por categorías (Perros, Gatos, Accesorios) y seleccionar un producto específico para ver sus detalles.
+                    </div>
+                </div>
+                <div class="step-box">
+                    <div class="step-title">PASO 2</div>
+                    <div class="step-content">
+                        Verificar información del producto: imágenes, descripción, precio de lista, precio contado y botón "Agregar al carrito".
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 9: Carrito de Compras -->
+    <div class="slide">
+        <div class="testing-section">
+            <div class="testing-title">CARRITO DE COMPRA</div>
+            <div class="screenshot-placeholder">
+                [CAPTURA DE PANTALLA DEL CARRITO DE COMPRAS]
+            </div>
+            <div class="steps-container">
+                <div class="step-box">
+                    <div class="step-title">PASO 1</div>
+                    <div class="step-content">
+                        Agregar productos al carrito desde diferentes secciones y verificar que se muestren correctamente con cantidades y precios.
+                    </div>
+                </div>
+                <div class="step-box">
+                    <div class="step-title">PASO 2</div>
+                    <div class="step-content">
+                        Modificar cantidades, eliminar productos y verificar que el total se calcule correctamente con descuentos aplicados.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 10: Medios de Pago -->
+    <div class="slide">
+        <div class="testing-section">
+            <div class="testing-title">MEDIOS DE PAGO</div>
+            <div class="screenshot-placeholder">
+                [CAPTURA DE PANTALLA DE MEDIOS DE PAGO]
+            </div>
+            <div class="steps-container">
+                <div class="step-box">
+                    <div class="step-title">PASO 1</div>
+                    <div class="step-content">
+                        Acceder al proceso de checkout y verificar que se muestren todos los métodos de pago disponibles (tarjetas, transferencia, etc.).
+                    </div>
+                </div>
+                <div class="step-box">
+                    <div class="step-title">PASO 2</div>
+                    <div class="step-content">
+                        Verificar aplicación de descuentos por pago contado (10% OFF) y validar formularios de datos de pago.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 11: Login -->
+    <div class="slide">
+        <div class="testing-section">
+            <div class="testing-title">LOGIN</div>
+            <div class="screenshot-placeholder">
+                [CAPTURA DE PANTALLA DEL LOGIN]
+            </div>
+            <div class="steps-container">
+                <div class="step-box">
+                    <div class="step-title">FORMULARIO LOGIN</div>
+                    <div class="step-content">
+                        Verificar campos de email/usuario y contraseña, validaciones, opción "Recordarme" y enlace de recuperación de contraseña.
+                    </div>
+                </div>
+                <div class="step-box">
+                    <div class="step-title">VALIDACIÓN</div>
+                    <div class="step-content">
+                        Testear login con credenciales válidas e inválidas, mensajes de error y redirección exitosa post-login.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 12: Enlaces -->
+    <div class="slide">
+        <h2>ENLACES</h2>
+        <div class="enlaces-section">
+            <div class="enlace-item">
+                <div class="enlace-numero">01</div>
+                <div class="enlace-text">HISTORIAS DE USUARIO</div>
+            </div>
+            <div class="enlace-item">
+                <div class="enlace-numero">02</div>
+                <div class="enlace-text">ESPECIFICACIONES CP</div>
+            </div>
+            <div class="enlace-item">
+                <div class="enlace-numero">03</div>
+                <div class="enlace-text">REPORTE DE BUGS</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 13: Final -->
+    <div class="slide">
+        <h1>NATURAL LIFE</h1>
+        <p class="subtitle">TESTING COMPLETO</p>
+        <div style="text-align: center; font-size: 1.3em; margin-top: 40px;">
+            <p>Proyecto finalizado con éxito</p>
+            <p style="margin-top: 20px; font-size: 1.1em;">www.natural-life.com.ar</p>
+        </div>
+    </div>
+
+</body>
+</html>
